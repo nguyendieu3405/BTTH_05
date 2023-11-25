@@ -6,29 +6,27 @@ Mục tiêu: Hiểu và áp dụng các thuật toán tìm kiếm.
 
 #include<stdio.h>
 
-// Hàm tìm kiếm tuyến tính
 int linearSearch(int s[], int n, int x) {
     for (int i = 0; i < n; i++) {
         if (s[i] == x) {
-            return i; // Trả về vị trí của phần tử nếu tìm thấy
+            return i;
         }
     }
-    return -1; // Trả về -1 nếu không tìm thấy
+    return -1; 
 }
 
-// Hàm tìm kiếm nhị phân
 int binarySearch(int s[], int low, int high, int x) {
     while (low <= high) {
         int temp = low + (high - low) / 2;
         if (s[temp] == x) {
-            return temp; // Trả về vị trí của phần tử nếu tìm thấy
+            return temp;
         } else if (s[temp] < x) {
             low = temp + 1;
         } else {
             high = temp - 1;
         }
     }
-    return -1; // Trả về -1 nếu không tìm thấy
+    return -1; 
 }
 
 int main() {
@@ -41,24 +39,21 @@ int main() {
         scanf("%d", &s[i]);
     }
 
-    // Nhập giá trị cần tìm kiếm
     printf("Nhap gia tri x can tim: ");
     scanf("%d", &x);
 
-    // Tìm kiếm tuyến tính và in kết quả
     int linearResult = linearSearch(s, n, x);
     if (linearResult != -1) {
-        printf("Tim thay gia tri tai vi tri: %d (tim kiem tuyen tinh)\n", linearResult);
+        printf("Tim thay gia tri tai vi tri: %d \n", linearResult);
     } else {
-        printf("Khong tim thay gia tri (tim kiem tuyen tinh)\n");
+        printf("INVALID)\n");
     }
 
-    // Tìm kiếm nhị phân và in kết quả
     int binaryResult = binarySearch(s, 0, n - 1, x);
     if (binaryResult != -1) {
-        printf("Tim thay gia tri tai vi tri: %d (tim kiem nhi phan)\n", binaryResult);
+        printf("Tim thay gia tri tai vi tri: %d\n", binaryResult);
     } else {
-        printf("Khong tim thay gia tri (tim kiem nhi phN)\n");
+        printf("INVALID\n");
     }
 
     return 0;
