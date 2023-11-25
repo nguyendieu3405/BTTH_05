@@ -8,7 +8,6 @@ Mục tiêu: Áp dụng thuật toán sắp xếp vào mảng.
 #include <stdlib.h>
 #include <time.h>
 
-// Hàm để hoán đổi giá trị của hai phần tử
 void swap(int *xp, int *yp) {
     int temp = *xp;
     *xp = *yp;
@@ -16,54 +15,46 @@ void swap(int *xp, int *yp) {
 }
 
 // Bubble Sort
-void bubbleSort(int arr[], int n) {
+void bubbleSort(int a[], int n) {
     int i, j;
     for (i = 0; i < n-1; i++) {
         for (j = 0; j < n-i-1; j++) {
-            if (arr[j] > arr[j+1]) {
-                swap(&arr[j], &arr[j+1]);
+            if (a[j] > a[j+1]) {
+                swap(&a[j], &a[j+1]);
             }
         }
     }
 }
 
 // Selection Sort
-void selectionSort(int arr[], int n) {
+void selectionSort(int a[], int n) {
     int i, j, min_idx;
     for (i = 0; i < n-1; i++) {
         min_idx = i;
         for (j = i+1; j < n; j++) {
-            if (arr[j] < arr[min_idx]) {
+            if (a[j] < a[min_idx]) {
                 min_idx = j;
             }
         }
-        swap(&arr[min_idx], &arr[i]);
+        swap(&a[min_idx], &a[i]);
     }
 }
 
 // Hàm để in mảng
-void printArray(int arr[], int size) {
+void printArray(int a[], int size) {
     int i;
     for (i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
+        printf("%d ", a[i]);
     }
     printf("\n");
 }
 /*
-// Hàm để đo thời gian thực thi của một hàm sắp xếp
-double measureTime(void (*sortFunction)(int[], int), int arr[], int n) {
+// Hàm để đo thời gian  của một hàm sắp xếp
+double measureTime(void (*sortFunction)(int[], int), int a[], int n) {
     clock_t start, end;
-
-    // Lấy thời gian bắt đầu
     start = clock();
-
-    // Gọi hàm sắp xếp
-    sortFunction(arr, n);
-
-    // Lấy thời gian kết thúc
+    sortFunction(a, n);
     end = clock();
-
-    // Trả về thời gian thực thi tính bằng giây
     return ((double) (end - start)) / CLOCKS_PER_SEC;
 }
 */
@@ -72,7 +63,6 @@ int main() {
     printf("Nhap so luong phan tu cua mang: ");
     scanf("%d", &n);
     int s[n];
-    // Nhập các phần tử của mảng
     for(int i=0;i<n;i++){
         scanf("%d",&s[i]);
     }
