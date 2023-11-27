@@ -8,56 +8,42 @@ Mục tiêu: Áp dụng thuật toán sắp xếp vào mảng.
 #include <stdlib.h>
 #include <time.h>
 
-void swap(int *xp, int *yp) {
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
-}
-
-// Bubble Sort
+// bubble sort
 void bubbleSort(int a[], int n) {
-    int i, j;
-    for (i = 0; i < n-1; i++) {
-        for (j = 0; j < n-i-1; j++) {
-            if (a[j] > a[j+1]) {
-                swap(&a[j], &a[j+1]);
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (a[j] > a[j + 1]) {
+                int temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
             }
         }
     }
 }
 
-// Selection Sort
+//  Selection Sort
 void selectionSort(int a[], int n) {
-    int i, j, min_idx;
-    for (i = 0; i < n-1; i++) {
-        min_idx = i;
-        for (j = i+1; j < n; j++) {
-            if (a[j] < a[min_idx]) {
-                min_idx = j;
+    for (int i = 0; i < n - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++) {
+            if (a[j] < a[minIndex]) {
+                minIndex = j;
             }
         }
-        swap(&a[min_idx], &a[i]);
+        int temp = a[i];
+        a[i] = a[minIndex];
+        a[minIndex] = temp;
     }
 }
 
-// Hàm để in mảng
+// Hàm in mảng
 void printArray(int a[], int size) {
-    int i;
-    for (i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) {
         printf("%d ", a[i]);
     }
     printf("\n");
 }
-/*
-// Hàm để đo thời gian  của một hàm sắp xếp
-double measureTime(void (*sortFunction)(int[], int), int a[], int n) {
-    clock_t start, end;
-    start = clock();
-    sortFunction(a, n);
-    end = clock();
-    return ((double) (end - start)) / CLOCKS_PER_SEC;
-}
-*/
+
 int main() {
     int n;
     printf("Nhap so luong phan tu cua mang: ");
@@ -69,8 +55,20 @@ int main() {
     printf("bubbleSort la: ");
     bubbleSort(s, n);
     printArray(s,n);
+    // đo thời gian sử dụng Bubble Sort
+    clock_t start_bubble = clock();
+    clock_t end_bubble = clock();
+    double elapsed_time_bubble = ((double)(end_bubble - start_bubble)) / CLOCKS_PER_SEC;
+    printf("thoi gian thuc hien cua Bubble Sort: %f seconds\n", elapsed_time_bubble);
+
     printf("selectionSort la: ");
     selectionSort(s,n);
     printArray(s,n);
+    // đo thời gian sử dụng Selection Sort
+    clock_t start_selection = clock();
+    clock_t end_selection = clock();
+    double elapsed_time_selection = ((double)(end_selection - start_selection)) / CLOCKS_PER_SEC;
+    printf("thoi gian thuc hien cua Selection Sort: %f seconds\n", elapsed_time_selection);
+
     return 0;
 }
